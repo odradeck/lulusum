@@ -1,4 +1,32 @@
 Lulusum::Application.routes.draw do
+  #devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+  resources :users do
+    member do
+      get :set_admin, :unset_admin
+    end
+  end
+  
+  get "main_pages/home"
+  get "main_pages/about"
+  get "main_pages/help"
+  get "main_pages/terms"
+  
+  root :to => "main_pages#home"
+  
+  match '/users/auth/:service/callback' => 'services#create' 
+  resources :services, :only => [:index, :create, :destroy]
+  
+  
+  
+  match '/help', to: 'main_pages#help'
+  match '/about', to: 'main_pages#about'
+  match '/terms', to: 'main_pages#terms'
+  
+
+
+  resources :test_models
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

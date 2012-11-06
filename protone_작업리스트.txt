@@ -1,0 +1,87 @@
+* rails new protone
+
+[ bootstrap 설치 ]
+   - gem 'twitter-bootstrap-rails'
+   - bundle install
+   - libv8 빌드시 에러
+   - window용 파이선 설치, path 지정
+   - bundle install
+   - 에러
+   - 파이선 2.7.3으로 다시 다운
+   --> 실패
+   - therubyracer가 윈도우에 안깔림
+     결국   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'static'
+   - static 한 브랜치를 받아서 설치
+
+  > rails g bootstrap:install
+  > rails g bootstrap:layout application fixed
+
+  > rails g scaffold TestModel title:string description:text
+  > rake db:migrate
+  > rails g bootstrap:themed TestModels
+ 
+   - less 파일 어쩌고 에러나서 
+     bootstrap_and_overrides.css 로 변경
+   - bootstrap 못찾아서 vendor 폴더에 bootstrap 만들고 js css 이미지 각각만들어 넣어줌
+
+   - $ rails g bootstrap:themed test_models -f 해서 만들어 봄
+
+* mainpage
+   - sass가 안먹어서, bootstrap-sass가 안먹음. 여튼 그냥 거기서 _variable떼서 vendor에
+   - 간단히 help, about, sing in 은 만듬
+
+* devise
+   - rails generate devise:install
+     (developmemt 에서는  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+     (Production에서는 진짜 호스트 이름)
+   - >rails generate devise User
+   -> rake db:migrate
+   - 다시 webserver on/off
+* user
+   - 빈 user controller 생성 (나중에 index 위해)
+   - $ rails generate migration add_admin_to_users admin:boolean
+   - 로그인 nav 링크
+   - rails generate devise:views
+   - rails generate simple_form:install --bootstrap //심플폼도 생성 (devise뷰에서 이놈 사용)
+   - 사용법
+    Inside your views, use the 'simple_form_for' with one of the Bootstrap form 
+     classes, '.form-horizontal', '.form-inline', '.form-search' or '.form-vertical', as the following:
+     = simple_form_for(@user, :html => {:class => 'form-horizontal' }) do |form|
+   - user 정보 추가
+
+* facebook, twitter
+   - facebook에 app 생성 - proton
+   - omniauth.rb에 facebook 아이디 입력
+   - twitter app 생성
+   - > rails generate model service user_id:integer provider:string uid:string uname:string uemail:string
+   - > rails generate controller services
+
+   - User model에   has_many :services, :dependent => :destroy 해주고
+   - service에도 belongs_to :user
+   - route에
+       match '/auth/:service/callback' => 'services#create' 
+       resources :services, :only => [:index, :create, :destroy]
+   - session_new에 페북/트위로 로그인 링크
+   - 웹서버 리붓 --> 트위터 에러
+   - twitter-oauth
+   - route 에러 나서
+       링크를 <a href="/users/auth/facebook" > 로 해줌
+   - 트위터는 메일주소를 안줘서 기존의 communityguide의 계정생성부분을 email 없을 경우는 uid로 체크하도록 변경
+     - devise와 충돌이 나서 (메일주소 반듯이 잇어야) :validation 옵션을 없앰
+   - password변경시 현재암호 입력해야되는거 없애버림
+      - registartion_controller에서 update시 모든 상황에서 without_password로 변경
+      - 폼에서 삭제
+
+* Post
+
+
+
+* board
+
+
+* redcarpet (markdown)
+
+
+
+
+   
