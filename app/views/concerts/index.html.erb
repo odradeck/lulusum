@@ -1,0 +1,48 @@
+<% if params[:filter] == 'favorit'%>
+<h4>찜한 공연 리스트</h4>
+<%else%>
+<h4>공연 리스트</h4>
+<%end%>
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Startdate</th>
+    <th>Enddate</th>
+    <th>Poster</th>
+    <th>Reflink</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Category</th>
+    <th>Score</th>
+    <th>Breakday</th>
+    <th>Price</th>
+    <th>Available</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @concerts.each do |concert| %>
+  <tr>
+    <td><%= concert.title %></td>
+    <td><%= concert.startdate %></td>
+    <td><%= concert.enddate %></td>
+    <td><%= concert.poster %></td>
+    <td><%= concert.reflink %></td>
+    <td><%= concert.description %></td>
+    <td><%= concert.status %></td>
+    <td><%= concert.category %></td>
+    <td><%= concert.score %></td>
+    <td><%= concert.breakday %></td>
+    <td><%= concert.price %></td>
+    <td><%= concert.available %></td>
+    <td><%= link_to 'Show', concert %></td>
+    <td><%= link_to 'Edit', edit_concert_path(concert) %></td>
+    <td><%= link_to 'Destroy', concert, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Concert', new_concert_path %>

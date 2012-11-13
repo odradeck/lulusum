@@ -1,17 +1,31 @@
 Lulusum::Application.routes.draw do
-  devise_for :users
-  #devise_for :users, :controllers => { :registrations => "registrations" }
+  resources :matches
+
+  resources :tickets
+
+  resources :concerts
+  
+  #devise_for :users
+  devise_for :users, :controllers => { :registrations => "registrations" }
+
+  
 
   resources :users do
     member do
       get :set_admin, :unset_admin
     end
+    
+    collection do
+      get :love
+    end
+    
   end
   
   get "main_pages/home"
   get "main_pages/about"
   get "main_pages/help"
   get "main_pages/terms"
+
   
   root :to => "main_pages#home"
   

@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @concert.title %>
+</p>
+
+<p>
+  <b>Startdate:</b>
+  <%= @concert.startdate %>
+</p>
+
+<p>
+  <b>Enddate:</b>
+  <%= @concert.enddate %>
+</p>
+
+<p>
+  <b>Poster:</b>
+  <%= @concert.poster %>
+</p>
+
+<p>
+  <b>Reflink:</b>
+  <%= @concert.reflink %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @concert.description %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @concert.status %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @concert.category %>
+</p>
+
+<p>
+  <b>Score:</b>
+  <%= @concert.score %>
+</p>
+
+<p>
+  <b>Breakday:</b>
+  <%= @concert.breakday %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @concert.price %>
+</p>
+
+<p>
+  <b>Available:</b>
+  <%= @concert.available %>
+</p>
+
+
+<%= link_to 'Edit', edit_concert_path(@concert) %> |
+<%= link_to 'Back', concerts_path %>

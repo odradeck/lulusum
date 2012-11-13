@@ -1,0 +1,43 @@
+<h4>신청중인 공연</h4>
+
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Match</th>
+    <th>Concert</th>
+    <th>Filter type 1</th>
+    <th>Filter type 2</th>
+    <th>Filter type 3</th>
+    <th>Filter age</th>
+    <th>Filter job</th>
+    <th>Filter tribe</th>
+    <th>Filter keyword</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.user_id %></td>
+    <td><%= ticket.match_id %></td>
+    <td><%= ticket.concert_id %></td>
+    <td><%= ticket.filter_type_1 %></td>
+    <td><%= ticket.filter_type_2 %></td>
+    <td><%= ticket.filter_type_3 %></td>
+    <td><%= ticket.filter_age %></td>
+    <td><%= ticket.filter_job %></td>
+    <td><%= ticket.filter_tribe %></td>
+    <td><%= ticket.filter_keyword %></td>
+    <td><%= link_to 'Show', ticket %></td>
+    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+    <td><%= link_to 'Destroy', ticket, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<h4>선정결과</h4>
+
+<%= link_to 'New Ticket', new_ticket_path %>

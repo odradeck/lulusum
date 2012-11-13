@@ -1,0 +1,27 @@
+<h4>함께한 공연</h4>
+
+<table class="table">
+  <tr>
+    <th>Concert</th>
+    <th>Status</th>
+    <th>Schedule</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @matches.each do |match| %>
+  <tr>
+    <td><%= match.concert_id %></td>
+    <td><%= match.status %></td>
+    <td><%= match.schedule %></td>
+    <td><%= link_to 'Show', match %></td>
+    <td><%= link_to 'Edit', edit_match_path(match) %></td>
+    <td><%= link_to 'Destroy', match, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Match', new_match_path %>

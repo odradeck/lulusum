@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
   #for Oauth
   has_many :services, :dependent => :destroy
   
+  has_many :relationship_favorit_concerts, :dependent => :destroy
+  has_many :favorit_concerts, :through=> :relationship_favorit_concerts, :source => :user
+  
+  has_many :interest_users
+  has_many :t_users, :through => :interest_users
+  
   def completeform?
     if self.phone
       true

@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     redirect_to user    
   end
   
+  def love
+    @users = current_user.t_users
+  end
+  
   def unset_admin
     user = User.find(params[:id])
     user.admin = false

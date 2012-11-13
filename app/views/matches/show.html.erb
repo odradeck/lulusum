@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Concert:</b>
+  <%= @match.concert_id %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @match.status %>
+</p>
+
+<p>
+  <b>Schedule:</b>
+  <%= @match.schedule %>
+</p>
+
+
+<%= link_to 'Edit', edit_match_path(@match) %> |
+<%= link_to 'Back', matches_path %>

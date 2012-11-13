@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @ticket.user_id %>
+</p>
+
+<p>
+  <b>Match:</b>
+  <%= @ticket.match_id %>
+</p>
+
+<p>
+  <b>Concert:</b>
+  <%= @ticket.concert_id %>
+</p>
+
+<p>
+  <b>Filter type 1:</b>
+  <%= @ticket.filter_type_1 %>
+</p>
+
+<p>
+  <b>Filter type 2:</b>
+  <%= @ticket.filter_type_2 %>
+</p>
+
+<p>
+  <b>Filter type 3:</b>
+  <%= @ticket.filter_type_3 %>
+</p>
+
+<p>
+  <b>Filter age:</b>
+  <%= @ticket.filter_age %>
+</p>
+
+<p>
+  <b>Filter job:</b>
+  <%= @ticket.filter_job %>
+</p>
+
+<p>
+  <b>Filter tribe:</b>
+  <%= @ticket.filter_tribe %>
+</p>
+
+<p>
+  <b>Filter keyword:</b>
+  <%= @ticket.filter_keyword %>
+</p>
+
+
+<%= link_to 'Edit', edit_ticket_path(@ticket) %> |
+<%= link_to 'Back', tickets_path %>

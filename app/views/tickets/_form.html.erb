@@ -1,0 +1,20 @@
+<%= simple_form_for(@ticket) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :match_id %>
+    <%= f.input :concert_id %>
+    <%= f.input :filter_type_1 %>
+    <%= f.input :filter_type_2 %>
+    <%= f.input :filter_type_3 %>
+    <%= f.input :filter_age %>
+    <%= f.input :filter_job %>
+    <%= f.input :filter_tribe %>
+    <%= f.input :filter_keyword %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
