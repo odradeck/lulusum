@@ -31,19 +31,34 @@
           <%= link_to "LuLuSum", root_path, id: "logo" %>
           <div class="container nav-collapse">
           	<ul class="nav pull-right">
-				<li><%= link_to "Link1", '#'  %></li>
+          		<% if user_signed_in? %>
+				<li><%= link_to "문화광장", '#'  %></li>
+				<%end%>
 
-				<li><%= link_to "About",    about_path %></li>
-				<li><%= link_to "Help",    help_path %></li>
+				<!-- ><li><%= link_to "룰루섬이란?",    about_path %></li> -->
+				<li class="dropdown">
+                      <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">룰루섬이란? <b class="caret"></b></a>
+                      <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                        <li><a tabindex="-1" href="about">룰루섬 이용안내</a></li>
+                        <li><a tabindex="-1" href="help">룰루 QnA</a></li>
+                        <li><a tabindex="-1" href="#">룰루지킴이들</a></li>
+                        <li><a tabindex="-1" href="#">제휴문의</a></li>
+                      </ul>
+                    </li>
+				<!-- <li>< link_to "Help",    help_path ></li> -->
 				<% if user_signed_in? %>
-  				<li><%= link_to('Out', destroy_user_session_path, :method => :delete) %></li>
-  				<li><%= link_to(current_user.name, edit_user_registration_path) %></li>
+  				<li><%= link_to "룰루TALK", '#' %></li>
+  				<li><%= link_to "EVENT", '#' %></li>
+ 				<li><%= link_to(current_user.name, current_user) %></li>
+ 				<li><%= link_to('로그아웃', destroy_user_session_path, :method => :delete) %></li>
   					<% if current_user.admin? %>
   						<li><%= link_to "Admin", "#" %></li>
   					<% end %>
 				<% else %>
-  				<li> <%= link_to('In', new_user_session_path)  %></li>
-  				<li> <%= link_to('SignUp', new_user_registration_path)  %> </li>
+  				<li> <%= link_to('로그인', new_user_session_path)  %>
+  				<li><a href="/users/auth/facebook" class="services"><%= image_tag "facebook_64.png", :size => "20x20",  :alt => "Facebook" %></a></li>
+            	<li><a href="/users/auth/twitter" class="services"><%= image_tag "twitter_64.png", :size => "20x20",  :alt => "Twitter" %></a></li>
+  				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
   				<% end %>
   			</ul>
 
@@ -61,17 +76,8 @@
         	
         	<% if user_signed_in? %>
         	<div class="span3">
-              <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li><%= link_to "Link1", "/path1"  %></li>
-                  <li><%= link_to "Link2", "/path2"  %></li>
-                  <li><%= link_to "Link3", "/path3"  %></li>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
-           
+              <%= render 'shared/side'%>
+             </div>
            <div class="span9"> 
            <%else%> 
            <div class="span12">

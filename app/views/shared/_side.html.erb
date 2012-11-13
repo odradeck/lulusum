@@ -1,9 +1,22 @@
-               <div class="well sidebar-nav">
-                <h3>Sidebar</h3>
+               <div class="sidebar-nav">
+               	<div style="float: left;padding-right:5px;">
+                <img src='<%= current_user.image_url%>' />
+                <center><h4>
+                	<%= current_user.name %></h4></center>
+                </div>
+                <div> <img src='<%= current_user.avatar_image_url%>'>
+                	<center><h4><%= current_user.tribe%></h4></center>
+                </div>
+                <div style="clear: both;">
+                	<i class="icon-envelope" ></i>&nbsp;<span class="badge badge-info">3</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	<i class="icon-th-large"></i>&nbsp;<span class="badge badge-info">5,000</span>
+                </div>
+                
                 <ul class="nav nav-list">
-                  <li class="nav-header">Sidebar</li>
-                  <li><%= link_to "Link1", "/path1"  %></li>
-                  <li><%= link_to "Link2", "/path2"  %></li>
-                  <li><%= link_to "Link3", "/path3"  %></li>
+                  <li><%= link_to "신청중인공연", '#'  %></li>
+                  <li><%= link_to "찜 공연", '#'  %></li>
+                  <li><%= link_to "함께한 공연", '#'  %></li>
+                  <li><%= link_to "관심친구", '#'  %></li>
+
                 </ul>
               </div><!--/.well -->
