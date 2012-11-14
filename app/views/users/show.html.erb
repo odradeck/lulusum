@@ -1,5 +1,21 @@
 
-<h3><%=@user.name %></h3>
+<h3><%=@user.name %> (<%= @user.tribe %>)</h3>
+<table class="table">
+<tr><td>닉네임</td><td><%=@user.nickname%></td></tr>
+<tr><td>이메일</td><td><%=@user.email%></td></tr>
+<tr><td>성별</td><td><%=@user.gender%></td></tr>
+<tr><td>최종학력</td><td><%=@user.education_degree%></td></tr>
+<tr><td>직업</td><td><%=@user.job%></td></tr>
+<tr><td>연락처</td><td><%=@user.phone%></td></tr>
+<tr><td>생년월일</td><td><%=@user.birth%></td></tr>
+<tr><td>활동지역</td><td><%=@user.location%></td></tr>
+<tr><td>출신대학</td><td><%=@user.university%></td></tr>
+<tr><td>직장명</td><td><%=@user.company%></td></tr>
+<tr><td>카톡아이디</td><td><%=@user.kakaotalk%></td></tr>
+
+
+	
+</table>
 
 
 

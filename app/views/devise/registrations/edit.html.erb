@@ -1,15 +1,96 @@
 <h2>회원정보 수정</h2>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal' }) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :email, :label=>"이메일", :required => true, :autofocus => true %>
-    <%= f.input :password, :label=>"비밀번호", :autocomplete => "off", :required => false %>
-    <%= f.input :password_confirmation, :label=>"비밀번호확인", :required => false %>
+<div class='row'>
+	<div class='span4'>
     <%= f.input :name, :label=>"이름", :required => true %>
+    <%= f.input :email, :label=>"이메일", :required => true %>
+    <%= f.input :gender, :label=>"성별", :collection => ['남자','여자'] %>
+    <%= f.input :education_degree, :label=>"최종학력", :collection => ['고졸','대졸','석사','박사'] %>
+    <%= f.input :job, :label=>"직업", :collection => ['백수','사무직','전문직','기타'] %>
+    <%= f.input :phone, :label=>"연락처" %>
+    
+ 	</div>
+  
+  	<div class='span4 offset1'>
+    <%= f.input :nickname, :label=>"닉네임" %>
+    <%= f.input :birth, :label=>"생년월일", :as=>"date" %>
+    <%= f.input :location, :label=>"활동지역", :collection=>['강남','방구석','홍대','압구정','기타'] %>
+    <%= f.input :university, :label=>"출신대학" %>
+    <%= f.input :company, :label=>"회사" %>
+    <%= f.input :kakaotalk, :label=>"카톡아이디"%>
   </div>
+ 
 
+</div>
+
+<!------------------------- ------------------------->
+<div class="row">
+	<div class="span12"><br>
+		<center>
+		<button type="button" class="btn btn-large " data-toggle="collapse" data-target="#demo">
+			<i class="icon-chevron-down icon-white"></i>
+  컬쳐코드 선택 <i class="icon-chevron-down icon-white"></i>
+</button></center>
+ 
+<div id="demo" class="collapse"> 
+		<br><br>
+			<div class="row-fluid">
+            <ul class="thumbnails">
+              <li class="span3">
+                <div class="thumbnail">
+                 <img src='/anyone.png'>
+					
+                 	<div class="caption">
+                 		우가우가족 (적극형)
+                    <center><input type="radio" name="user[tribe]" value='우가우가족' checked></center>
+                    </div>
+                </div>
+              </li>
+              <li class="span3">
+                <div class="thumbnail">
+                 <img src='/anyone.png'>
+					
+                 	<div class="caption">
+                 		울랄라족 (어울림형)
+                    <center><input type="radio" name="user[tribe]" value='울랄라족' checked></center>
+                    </div>
+                </div>
+              </li>
+              <li class="span3">
+                <div class="thumbnail">
+                 <img src='/anyone.png'>
+					
+                 	<div class="caption">
+                 		따로리족 (외계인형)
+                    <center><input type="radio" name="user[tribe]" value='따로리족' checked></center>
+                    </div>
+                </div>
+              </li>
+                            <li class="span3">
+                <div class="thumbnail">
+                 <img src='/anyone.png'>
+					
+                 	<div class="caption">
+                 		몽실몽실족 (온순형)
+                    <center><input type="radio" name="user[tribe]" value='몽실몽실족' checked></center>
+                    </div>
+                </div>
+              </li>
+              </div>
+</div>
+	</div>
+
+</div>
+
+<!------------------------- ------------------------->
+
+<h4>비밀번호 변경 </h4>
+	<%= f.input :password, :label=>"비밀번호", :autocomplete => "off", :required => false %>
+    <%= f.input :password_confirmation, :label=>"비밀번호확인", :required => false %>
+    
   <div >
     <%= f.button :submit, "수정" %>
   </div>

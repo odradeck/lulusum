@@ -3,45 +3,30 @@
 <%else%>
 <h4>공연 리스트</h4>
 <%end%>
-<table class="table">
-  <tr>
-    <th>Title</th>
-    <th>Startdate</th>
-    <th>Enddate</th>
-    <th>Poster</th>
-    <th>Reflink</th>
-    <th>Description</th>
-    <th>Status</th>
-    <th>Category</th>
-    <th>Score</th>
-    <th>Breakday</th>
-    <th>Price</th>
-    <th>Available</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="row">
+	<div class="span12">
+			<div class="row-fluid">
+            
+            	<% @concerts.each_with_index do |concert, index| %>
+            	<%if index%3==0 %> <ul class="thumbnails"> <%end%>
+              <li class="span3">
+                <div class="thumbnail">
+                 <img src='<%= concert.poster%>'>
+                 	<div class="caption">
+                 		<h4><%= link_to concert.title, concert =%></h4>
+                 		<%= concert.description %>
+                    </div>
+                </div>
+              </li>
+              <%if index%3==2%> </ul> <%end%> 
+             <%end%>
+             
+              </div>
+	</div>
 
-<% @concerts.each do |concert| %>
-  <tr>
-    <td><%= concert.title %></td>
-    <td><%= concert.startdate %></td>
-    <td><%= concert.enddate %></td>
-    <td><%= concert.poster %></td>
-    <td><%= concert.reflink %></td>
-    <td><%= concert.description %></td>
-    <td><%= concert.status %></td>
-    <td><%= concert.category %></td>
-    <td><%= concert.score %></td>
-    <td><%= concert.breakday %></td>
-    <td><%= concert.price %></td>
-    <td><%= concert.available %></td>
-    <td><%= link_to 'Show', concert %></td>
-    <td><%= link_to 'Edit', edit_concert_path(concert) %></td>
-    <td><%= link_to 'Destroy', concert, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+</div>
+
+
 
 <br />
 
