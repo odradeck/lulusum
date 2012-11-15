@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   
   has_many :interest_users
   has_many :t_users, :through => :interest_users
+  has_many :tickets
   
   def completeform?
     if self.phone

@@ -1,43 +1,49 @@
-<h4>신청중인 공연</h4>
+<%if params[:matched] %>
+<h4>함께한 공연</h4>
 
 <table class="table">
   <tr>
-    <th>User</th>
-    <th>Match</th>
-    <th>Concert</th>
-    <th>Filter type 1</th>
-    <th>Filter type 2</th>
-    <th>Filter type 3</th>
-    <th>Filter age</th>
-    <th>Filter job</th>
-    <th>Filter tribe</th>
-    <th>Filter keyword</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>공연제목</th>
+    <th>장소</th>
+    <th>날짜시간</th>
+    <th>함께한친구</th>
+ 
   </tr>
 
 <% @tickets.each do |ticket| %>
   <tr>
-    <td><%= ticket.user_id %></td>
-    <td><%= ticket.match_id %></td>
-    <td><%= ticket.concert_id %></td>
-    <td><%= ticket.filter_type_1 %></td>
-    <td><%= ticket.filter_type_2 %></td>
-    <td><%= ticket.filter_type_3 %></td>
-    <td><%= ticket.filter_age %></td>
-    <td><%= ticket.filter_job %></td>
-    <td><%= ticket.filter_tribe %></td>
-    <td><%= ticket.filter_keyword %></td>
-    <td><%= link_to 'Show', ticket %></td>
-    <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-    <td><%= link_to 'Destroy', ticket, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= ticket.concert.title %></td>
+    <td><%= ticket.concert.location %></td>
+    <td> 스케쥴입력 </td>
+    <td> 애들얼굴 %></td>
+  
+  </tr>
+<% end %>
+</table>
+<%else%>
+<h4>신청중인 공연</h4>
+
+<table class="table">
+  <tr>
+    <th>공연제목</th>
+    <th>장소</th>
+    <th>날짜시간</th>
+    <th>수정하기</th>
+    <th>취소신청</th>
+  </tr>
+
+<% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.concert.title %></td>
+    <td><%= ticket.concert.location %></td>
+    <td> 스케쥴입력 </td>
+    <td><%= link_to '수정하기', edit_ticket_path(ticket, :concert_id=>ticket.concert.id) %></td>
+    <td><% if ticket.match %> <%= link_to "선정결과", ticket.match %> <%else%> <%= link_to '취소하기', ticket, confirm: '추운겨울을 보내고 싶으세요?', method: :delete %> <%end%> </td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<%end%>
 
-<h4>선정결과</h4>
 
 <%= link_to 'New Ticket', new_ticket_path %>

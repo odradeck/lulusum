@@ -15,7 +15,7 @@
                 <ul class="nav nav-list">
                   <li><%= link_to "신청중인공연", tickets_path  %></li>
                   <li><%= link_to "찜 공연", concerts_path(:filter=>'favorit')  %></li>
-                  <li><%= link_to "함께한 공연", matches_path  %></li>
+                  <li><%= link_to "함께한 공연", tickets_path(:matched=>'true')  %></li>
                   <li><%= link_to "관심친구", love_users_path  %></li>
 
                 </ul>

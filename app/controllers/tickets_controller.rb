@@ -2,7 +2,13 @@ class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.json
   def index
-    @tickets = Ticket.all
+    
+    if (params[:matched] == 'true')
+      @tickets = Ticket.all
+    else
+       @tickets = Ticket.all
+    end
+   
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +31,11 @@ class TicketsController < ApplicationController
   # GET /tickets/new.json
   def new
     @ticket = Ticket.new
-
+    
+    if params[:concert_id]
+    @concert = Concert.find(params[:concert_id])
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @ticket }
@@ -35,12 +45,16 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])
+        if params[:concert_id]
+    @concert = Concert.find(params[:concert_id])
+    end
   end
 
   # POST /tickets
   # POST /tickets.json
   def create
-    @ticket = Ticket.new(params[:ticket])
+    #@ticket = Ticket.new(params[:ticket])
+      @ticket = current_user.tickets.build(params[:ticket])
 
     respond_to do |format|
       if @ticket.save
