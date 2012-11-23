@@ -56,8 +56,8 @@
   					<% end %>
 				<% else %>
   				<li> <%= link_to('로그인', new_user_session_path)  %>
-  				<li><a href="/users/auth/facebook" class="services"><%= image_tag "facebook_64.png", :size => "20x20",  :alt => "Facebook" %></a></li>
-            	<li><a href="/users/auth/twitter" class="services"><%= image_tag "twitter_64.png", :size => "20x20",  :alt => "Twitter" %></a></li>
+  				<li><a href="/users/auth/facebook" class="services"><img src="facebook_64.png", width='20px'></a></li>
+            	<li><a href="/users/auth/twitter" class="services"><img src="twitter_64.png", width='20px'></a></li>
   				<li> <%= link_to('회원가입', new_user_registration_path)  %> </li>
   				<% end %>
   			</ul>
