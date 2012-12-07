@@ -5,5 +5,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :concert
   belongs_to :match
 
+  has_many :relationship_ticket_schedules, :dependent => :destroy
+  has_many :select_schedules, :through=> :relationship_ticket_schedules, :source => :schedule
   
 end

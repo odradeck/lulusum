@@ -25,6 +25,8 @@ class ConcertsController < ApplicationController
   # GET /concerts/new.json
   def new
     @concert = Concert.new
+    
+    1.times { @concert.schedules.build }
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,21 +1,48 @@
-<%= simple_form_for(@concert) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :startdate %>
-    <%= f.input :enddate %>
-    <%= f.input :poster %>
-    <%= f.input :reflink %>
-    <%= f.input :description %>
-    <%= f.input :status %>
-    <%= f.input :category %>
-    <%= f.input :score %>
-    <%= f.input :breakday %>
-    <%= f.input :price %>
-	<%= f.input :location %>
-    <%= f.input :available %>
+<%= form_for(@concert) do |f| %>
+  <% if @concert.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@concert.errors.count, "error") %> prohibited this concert from being saved:</h2>
+      <ul>
+      <% @concert.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+  	<%= f.label :title, "제목"%>
+    <%= f.text_field :title %>
+    
+    <%= f.label :title, "시작일"%>
+    <%= f.date_select :startdate %>
+    <%= f.label :title, "끝나는날"%>
+    <%= f.date_select :enddate %>
+    
+    <%= f.label :poster, "포스터링크"%>
+    <%= f.text_field :poster %>
+   	
+   	<%= f.label :description, "설명"%>
+    <%= f.text_field :description %>
+    
+    <%= f.label :status, "상태"%>
+    <%= f.text_field :status %>
+    
+    <%= f.label :price, "가격"%>
+    <%= f.text_field :price %>
+    
+    <%= f.label :location, "위치"%>
+	<%= f.text_field :location %>
+	<%= f.label :available, "가능티켓"%>
+    <%= f.text_field :available %>
   </div>
+
+					 
+	<%= f.fields_for :schedules do |builder| %>
+   	  <%= render 'schedule_fields', f: builder %>
+  	<% end %>
+	<%= link_to_add_fields "Add Schedule", f, :schedules %>
+	
 
   <div class="form-actions">
     <%= f.button :submit %>
