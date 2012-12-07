@@ -32,6 +32,8 @@ class TicketsController < ApplicationController
   def new
     @ticket = Ticket.new
     
+    3.times { @ticket.relationship_ticket_schedules.build }
+    
     if params[:concert_id]
     @concert = Concert.find(params[:concert_id])
     end
@@ -45,9 +47,10 @@ class TicketsController < ApplicationController
   # GET /tickets/1/edit
   def edit
     @ticket = Ticket.find(params[:id])
-        if params[:concert_id]
-    @concert = Concert.find(params[:concert_id])
-    end
+    @concert = @ticket.concert
+   #     if params[:concert_id]
+   # @concert = Concert.find(params[:concert_id])
+   # end
   end
 
   # POST /tickets
@@ -55,7 +58,8 @@ class TicketsController < ApplicationController
   def create
     #@ticket = Ticket.new(params[:ticket])
       @ticket = current_user.tickets.build(params[:ticket])
-
+    
+    
     respond_to do |format|
       if @ticket.save
         format.html { redirect_to @ticket, notice: 'Ticket was successfully created.' }
@@ -65,13 +69,15 @@ class TicketsController < ApplicationController
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
+    
+       
   end
 
   # PUT /tickets/1
   # PUT /tickets/1.json
   def update
     @ticket = Ticket.find(params[:id])
-
+   
     respond_to do |format|
       if @ticket.update_attributes(params[:ticket])
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }
@@ -81,6 +87,7 @@ class TicketsController < ApplicationController
         format.json { render json: @ticket.errors, status: :unprocessable_entity }
       end
     end
+    
   end
 
   # DELETE /tickets/1
