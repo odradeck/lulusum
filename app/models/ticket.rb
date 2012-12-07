@@ -9,5 +9,5 @@ class Ticket < ActiveRecord::Base
   has_many :relationship_ticket_schedules, :dependent => :destroy
   has_many :select_schedules, :through=> :relationship_ticket_schedules, :source => :schedule
   
-  accepts_nested_attributes_for :relationship_ticket_schedules, allow_destroy: true
+  accepts_nested_attributes_for :relationship_ticket_schedules, :reject_if => lambda { |a| a[:schedule_id].blank? }, allow_destroy: true
 end

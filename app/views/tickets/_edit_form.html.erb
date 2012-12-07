@@ -1,0 +1,30 @@
+<%= simple_form_for(@ticket) do |f| %>
+  <%= f.error_notification %>
+
+	<h4>원하는 친구</h4>
+ <div class='row'>
+ 
+	<div class='span3'>
+       <%= f.input :filter_type_1, :label=>"1순위", :collection => ['1:1이성친구','2:2:친구동반','3:3친구동반','4명~6명','선택안함'] %>
+       <%= f.input :filter_tribe, :label=>"컬쳐코드", :collection => ['우가우가족','띠로리족','울랄라족','몽실몽실족'] %>
+	 </div>
+	 <div class="span3">
+	 	    <%= f.input :filter_type_2, :label=>"2순위", :collection => ['1:1이성친구','2:2:친구동반','3:3친구동반','4명~6명','선택안함'] %>
+	 	    <%= f.input :filter_age, :label=>"나이", :collection => ['20대초반','20대중반','30대초반','30대중반','선택안함'] %>
+	 	</div>
+	 	<div class="span3">
+	 		   <%= f.input :filter_type_3, :label=>"3순위", :collection => ['1:1이성친구','2:2:친구동반','3:3친구동반','4명~6명','선택안함'] %>
+	 		   <%= f.input :filter_age, :label=>"직업", :collection => ['학생','직장인','선택안함'] %>
+ 		       <%= hidden_field_tag("ticket[concert_id]", params[:concert_id]) %>
+	 	</div>
+	 </div>
+
+	<%= f.fields_for :relationship_ticket_schedules do |builder| %>
+   	  <%= render 'edit_schedule_fields', f: builder, concert: @concert %>
+  	<% end %>
+	<!-- %= link_to_add_fields "일정추가하기", f, :relationship_ticket_schedules % -->
+	
+ 
+    <%= f.button :submit, "신청하기" %>
+ 
+<% end %>
