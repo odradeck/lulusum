@@ -1,6 +1,8 @@
 # coding : utf-8
 
 class MatchesController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :admin_filter, except: [:show]
   # GET /matches
   # GET /matches.json
   def index

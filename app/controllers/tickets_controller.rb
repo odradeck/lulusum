@@ -1,4 +1,8 @@
+# coding : utf-8
+
 class TicketsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :check_mandatory_field
   # GET /tickets
   # GET /tickets.json
   def index
@@ -104,5 +108,15 @@ class TicketsController < ApplicationController
       format.html { redirect_to tickets_url }
       format.json { head :no_content }
     end
+  end
+  
+private
+  def check_mandatory_field
+      if current_user.phone.blank? or current_user.gender.blank? or current_user.name.blank? or current_user.email.blank? or current_user.tribe.blank?
+        redirect_to edit_user_registration_path, notice: "신청을 하시려면 필수 항목정보를 모두 입력해야합니다."
+      end   
+      
+      
+       
   end
 end

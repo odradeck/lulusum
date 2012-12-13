@@ -1,4 +1,6 @@
 class ConcertsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :admin_filter, except: [:index]
   # GET /concerts
   # GET /concerts.json
   def index
