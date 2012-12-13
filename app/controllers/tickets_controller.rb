@@ -7,7 +7,10 @@ class TicketsController < ApplicationController
   # GET /tickets.json
   def index
     
-    if (params[:matched] == 'true')
+    if (params[:all]=='true' && current_user.admin?)
+      @tickets = Ticket.all
+    
+    elsif (params[:matched] == 'true')
       @tickets = current_user.tickets.where(:status => 'matched')
       
     else

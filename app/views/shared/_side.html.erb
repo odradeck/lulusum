@@ -35,6 +35,15 @@
 		<li>
 			<%= link_to "관심친구", love_users_path  %>
 		</li> -->
+		
+		<% if current_user.admin?%>
+		<br/>
+		관리자메뉴
+		<li><%= link_to "공연생성", new_concert_path  %></li>
+		<li><%= link_to "매칭하기", new_match_path  %></li>
+		<li><%= link_to "전체사용자", users_path  %></li>
+		<li><%= link_to "전체신청", tickets_path(:all=>'true')  %></li>
+		<%end%>
 
 	</ul>
 </div><!--/.well -->

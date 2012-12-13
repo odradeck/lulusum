@@ -27,6 +27,12 @@
 	<%= link_to_add_fields "일정추가하기", f, :relationship_ticket_schedules %>
 	
 	<br/>
+	
+	<%if current_user.admin?%>
+	<h4>상태변경 <small>(관리자만 보이는 메뉴, 현재:<%=@ticket.status%>)</small></h4>
+	<%= f.input :status, :label=>"상태", :collection => ['matched','failed'] %>
+	<%end%>
+		
  <center>
     <%= f.button :submit, "신청하기", :class=>"btn btn-large btn-primary" %>
     </center>

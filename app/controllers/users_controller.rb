@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!,  only: [:index, :show]
-  before_filter :admin_user, only: [:set_admin, :unset_admin]
+  before_filter :correct_user,  only: [:show, :edit, :update]
+  before_filter :admin_user, only: [:set_admin, :unset_admin, :index, :destory]
      
   def show
     @user = User.find(params[:id])
@@ -50,7 +50,7 @@ private
       @user = User.find(params[:id])
             
       #redirect_to(root_path) unless current_user?(@user)
-      redirect_to root_path, notice: "Yon can not edit" unless current_user==@user || @user.admin?
+      redirect_to root_path, notice: "Yon can not handle other user" unless current_user==@user || @user.admin?
     end
     
     def admin_user
