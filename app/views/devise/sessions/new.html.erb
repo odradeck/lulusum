@@ -1,22 +1,37 @@
-<h2>Sign in</h2>
+<h2>로그인</h2>
 
 <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
+<%= f.error_notification %>
+<div class="row">
+	<div class="span3">
+		</div>
+	<div class="span3">
+		<h4>직접 로그인하기<h4>
+		  <div class="form-inputs">
     <%= f.input :email, :required => false, :autofocus => true %>
     <%= f.input :password, :required => false %>
     <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign in" %>
-  </div>
-<% end %>
+		<div >
+			<center>
+			<%= f.button :submit, "로그인", :class=>"btn btn-primary" %>
+			</center>
+		</div>
+	</div>
+	<div class="span1" style="height:500px; text-align: center;">
+		<h4>OR</h4>
+	</div>
+	<div class="span5">
+		<center>
+		<h4>페이스북으로 로그인하기<h4>
+			</center>
+		<center>
+		<a href="/users/auth/facebook" class="services"><img style="width:50px" src="/facebook_64.png" width="20"></a>
+		</center>
+	</div>
 
-<div id="remote">
-        <div id="services" class="box">
-            <a href="/users/auth/facebook" class="services"><%= image_tag "facebook_64.png", :size => "64x64",  :alt => "Facebook" %>Facebook</a>
-            <a href="/users/auth/twitter" class="services"><%= image_tag "twitter_64.png", :size => "64x64",  :alt => "Twitter" %>Twitter</a>
-        </div>
-    </div>
+</div>
+<% end %>
 
 <%= render "devise/shared/links" %>

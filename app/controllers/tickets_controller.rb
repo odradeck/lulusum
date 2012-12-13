@@ -48,6 +48,7 @@ class TicketsController < ApplicationController
   def edit
     @ticket = Ticket.find(params[:id])
     @concert = @ticket.concert
+    @s_schedules = @ticket.select_schedules
    #     if params[:concert_id]
    # @concert = Concert.find(params[:concert_id])
    # end
@@ -77,7 +78,9 @@ class TicketsController < ApplicationController
   # PUT /tickets/1.json
   def update
     @ticket = Ticket.find(params[:id])
-   
+    @concert = @ticket.concert
+    @s_schedules = @ticket.select_schedules
+    
     respond_to do |format|
       if @ticket.update_attributes(params[:ticket])
         format.html { redirect_to @ticket, notice: 'Ticket was successfully updated.' }

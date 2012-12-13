@@ -1,0 +1,13 @@
+<fieldset> 
+	
+	<% @pre = @ticket.select_schedules[@index].id if @ticket.select_schedules[@index]%>
+  <%= f.select :schedule_id, options_from_collection_for_select(@concert.schedules, 'id', 'label_start_time', @pre ), :include_blank => true %>
+    <% @index += 1 %>
+  	<% @pre= nil%>
+  
+  <!-- %= f.input :schedule_id, :label=>false, :label_method=>:start_time, :collection => @concert.schedules % -->
+  <%= f.hidden_field :_destroy %>
+  <%= link_to "삭제", '#', class: "remove_fields" %>
+  
+  
+</fieldset>

@@ -1,7 +1,7 @@
 <%= simple_form_for(@ticket) do |f| %>
   <%= f.error_notification %>
 
-	<h4>원하는 친구</h4>
+	<h4>원하는 친구 조건</h4>
  <div class='row'>
  
 	<div class='span3'>
@@ -19,12 +19,16 @@
 	 	</div>
 	 </div>
 
+	<h4>가능한 스케쥴   </h4>
+	<% @index = 0 %>	
 	<%= f.fields_for :relationship_ticket_schedules do |builder| %>
-   	  <%= render 'schedule_fields', f: builder, concert: @concert %>
+   	  <%= render 'relationship_ticket_schedule_fields', f: builder, concert: @concert %>
   	<% end %>
-	<!-- %= link_to_add_fields "일정추가하기", f, :relationship_ticket_schedules % -->
+	<%= link_to_add_fields "일정추가하기", f, :relationship_ticket_schedules %>
 	
- 
-    <%= f.button :submit, "신청하기" %>
+	<br/>
+ <center>
+    <%= f.button :submit, "신청하기", :class=>"btn btn-large btn-primary" %>
+    </center>
  
 <% end %>

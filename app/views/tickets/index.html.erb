@@ -34,17 +34,17 @@
 
 <% @tickets.each do |ticket| %>
   <tr>
-    <td><%= ticket.concert.title %></td>
-    <td><%= ticket.concert.location %></td>
+    <td><%= ticket.concert.title if ticket.concert%></td>
+    <td><%= ticket.concert.location if ticket.concert %></td>
     <td> <ul>
 <% ticket.select_schedules.each do |schedule| %>
   <li>
-    	<%= schedule.start_time%>   
+    	<%= schedule.label_start_time%>   
   </li>
 <% end %>
  </ul>
    	</td>
-    <td><%= link_to '수정하기', edit_ticket_path(ticket, :concert_id=>ticket.concert.id) %></td>
+    <td><%= link_to '수정하기', edit_ticket_path(ticket, :concert_id=>ticket.concert.id) if ticket.concert %></td>
     <td><% if ticket.match %> <%= link_to "선정결과", ticket.match %> <%else%> <%= link_to '취소하기', ticket, confirm: '추운겨울을 보내고 싶으세요?', method: :delete %> <%end%> </td>
   </tr>
 <% end %>
