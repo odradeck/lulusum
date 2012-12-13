@@ -1,5 +1,5 @@
 
-<h3><%=@user.name %> (<%= @user.tribe %>)</h3>
+<h3><%=@user.name %> (<%= @user.tribe %>)<%if @user.admin?%> (관리자)<%end%></h3>
 <table class="table">
 <tr><td>닉네임</td><td><%=@user.nickname%></td></tr>
 <tr><td>이메일</td><td><%=@user.email%></td></tr>
