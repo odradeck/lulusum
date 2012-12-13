@@ -22,14 +22,19 @@
 
 
 	<ul class="nav nav-list">
-		<li>
-			<%= link_to "신청중인공연", tickets_path  %>
-		</li>
+		<li class="nav-header">공연리스트</li>
+		<li><%= link_to "진행중인 공연", concerts_path  %></li>
+		<li><%= link_to "전체 공연", concerts_path(:filter=>'all')  %></li>
+		<li><%= link_to "준비중인 공연", concerts_path(:filter=>'ready')  %></li>
+		<li><%= link_to "지나간 공연", concerts_path(:filter=>'finished')  %></li>
+		
+		<li class="nav-header">신청리스트</li>
+		<li><%= link_to "내 신청리스트", tickets_path  %></li>
 		<!-- ><li>
 			<%= link_to "찜 공연", concerts_path(:filter=>'favorit')  %>
 		</li> -->
 		<li>
-			<%= link_to "함께한 공연", tickets_path(:matched=>'true')  %>
+			<%= link_to "지난 신청리스트", tickets_path(:matched=>'true')  %>
 		</li>
 		<!--
 		<li>
@@ -37,8 +42,7 @@
 		</li> -->
 		
 		<% if current_user.admin?%>
-		<br/>
-		관리자메뉴
+		<li class="nav-header">관리자</li>
 		<li><%= link_to "공연생성", new_concert_path  %></li>
 		<li><%= link_to "매칭하기", new_match_path  %></li>
 		<li><%= link_to "전체사용자", users_path  %></li>

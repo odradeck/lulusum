@@ -4,7 +4,17 @@ class ConcertsController < ApplicationController
   # GET /concerts
   # GET /concerts.json
   def index
+    if params[:filter] == 'all'
     @concerts = Concert.all
+    elsif params[:filter] == 'finished'
+      @concerts = Concert.where(:status => 'finished')
+    elsif params[:filter] == 'ready'
+      @concerts = Concert.where(:status => 'ready')
+    else
+      @concerts = Concert.where(:status => 'active')
+    end
+      
+      
 
     respond_to do |format|
       format.html # index.html.erb

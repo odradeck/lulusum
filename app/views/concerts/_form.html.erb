@@ -26,7 +26,7 @@
     <%= f.text_field :description %>
     
     <%= f.label :status, "상태"%>
-    <%= f.text_field :status %>
+    <%= f.select :status, options_for_select([['ready', 'ready'], ['active', 'active'], ['finished', 'finished']], @concert.status) %>
     
     <%= f.label :price, "가격"%>
     <%= f.text_field :price %>

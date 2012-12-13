@@ -13,7 +13,9 @@
                 <div class="thumbnail">
                  <img src='<%= concert.poster%>'>
                  	<div class="caption">
-                 		<h4><%= link_to concert.title, new_ticket_path(:concert_id=>concert.id) =%></h4>
+                 		<h4><%= link_to concert.title, new_ticket_path(:concert_id=>concert.id) =%>
+                 			<%if current_user.admin?%> <small><%= link_to '수정', edit_concert_path(concert) %>|<%= link_to '삭제', concert, confirm: 'Are you sure?', method: :delete %></small><%end%>
+                 		</h4>
                  		<%= concert.description %>
                     </div>
                 </div>
