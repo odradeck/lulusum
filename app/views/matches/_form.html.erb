@@ -2,12 +2,71 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :concert_id %>
-    <%= f.input :status %>
-    <%= f.input :schedule %>
+    <%= f.input :concert_id, :collection=>Concert.all, :label_method=>'title' %>
+    <%= f.input :schedule_id, :collection=>Schedule.all, :label_method=>'label_full' %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+<div class='row-fluid'>
+	<div class="span12">
+		<h4>여성회원</h4>
+		<table class="table">
+		<% @girl_tickets.each do |ticket|%>
+			<tr>
+				<td><input type="checkbox" name="ticket_ids[]" value='<%=ticket.id%>' /></td>
+				<td><%= ticket.concert.title%></td>
+				<td><%= ticket.user.name%></td>
+				<td><ul><% ticket.select_schedules.each do |schedule| %>
+					<li><%= schedule.label_start_time%></li>
+					<% end %>
+					</ul>
+				</td>
+				<td><ul>
+					<li><%= ticket.filter_type_1%></li>
+					<li><%= ticket.filter_type_2%></li>
+					<li><%= ticket.filter_type_3%></li>
+					</td>
+				<td><ul>
+					<li>연령:<%= ticket.filter_age%></li>
+					<li>직업:<%= ticket.filter_job%></li>
+					<li>종족:<%= ticket.filter_tribe%></li>
+					</td>
+				
+			</tr>
+		<%end%>
+		</table>
+		
+		<h4>남성회원</h4>
+		<table class="table">
+		<% @boy_tickets.each do |ticket|%>
+			<tr>
+				<td><input type="checkbox" name="ticket_ids[]" value='<%=ticket.id%>' /></td>
+				<td><%= ticket.concert.title%></td>
+				<td><%= ticket.user.name%></td>
+				<td><ul><% ticket.select_schedules.each do |schedule| %>
+					<li><%= schedule.label_start_time%></li>
+					<% end %>
+					</ul>
+				</td>
+				<td><ul>
+					<li><%= ticket.filter_type_1%></li>
+					<li><%= ticket.filter_type_2%></li>
+					<li><%= ticket.filter_type_3%></li>
+					</td>
+				<td><ul>
+					<li>연령:<%= ticket.filter_age%></li>
+					<li>직업:<%= ticket.filter_job%></li>
+					<li>종족:<%= ticket.filter_tribe%></li>
+					</td>
+				
+			</tr>
+		<%end%>
+		</table>
+		
+	</div>
+</div>	
+  
+  
+  
+    <%= f.button :submit, "매칭하기" %>
+  
 <% end %>

@@ -1,3 +1,5 @@
+# coding : utf-8
+
 class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
@@ -14,6 +16,8 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
     @match = Match.find(params[:id])
+    
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +29,9 @@ class MatchesController < ApplicationController
   # GET /matches/new.json
   def new
     @match = Match.new
-
+    
+    @boy_tickets = Ticket.joins(:user).where('users.gender' => '남자', :status => nil)
+    @girl_tickets = Ticket.joins(:user).where('users.gender' => '여자', :status => nil)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @match }
@@ -35,15 +41,26 @@ class MatchesController < ApplicationController
   # GET /matches/1/edit
   def edit
     @match = Match.find(params[:id])
+    @boy_tickets = Ticket.joins(:user).where('users.gender' => '남자', :status => nil)
+    @girl_tickets = Ticket.joins(:user).where('users.gender' => '여자', :status => nil)
   end
 
   # POST /matches
   # POST /matches.json
   def create
     @match = Match.new(params[:match])
+    @ticket_ids = params[:ticket_ids]
 
     respond_to do |format|
       if @match.save
+        
+        @ticket_ids.each do |t_id|
+          ticket = Ticket.find(t_id)
+          ticket.match = @match
+          ticket.status = 'matched' 
+          ticket.save
+        end 
+        
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render json: @match, status: :created, location: @match }
       else
@@ -57,9 +74,25 @@ class MatchesController < ApplicationController
   # PUT /matches/1.json
   def update
     @match = Match.find(params[:id])
+    @ticket_ids = params[:ticket_ids]
+     
+     
+    @match.tickets.each do |tticket|
+          tticket.match_id = nil
+          tticket.status = nil 
+          tticket.save
+    end 
 
     respond_to do |format|
       if @match.update_attributes(params[:match])
+        
+        @ticket_ids.each do |t_id|
+          ticket = Ticket.find(t_id)
+          ticket.match = @match
+          ticket.status = 'matched' 
+          ticket.save
+        end 
+        
         format.html { redirect_to @match, notice: 'Match was successfully updated.' }
         format.json { head :no_content }
       else

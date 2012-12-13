@@ -1,5 +1,9 @@
-<h1>Editing match</h1>
+<h1>매칭수정</h1>
 
+<b> 현재참석자 </b>
+<% @match.tickets.each do |ticket|%>
+	<li style="padding-bottom: 5px;"><img src='<%= ticket.user.image_url%>' width='30px'> <%=ticket.user.name %> (<%=ticket.user.gender %>)</li>
+	<%end%>
 <%= render 'form' %>
 
 <%= link_to 'Show', @match %> |

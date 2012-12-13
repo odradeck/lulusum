@@ -1,19 +1,23 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Concert:</b>
-  <%= @match.concert_id %>
+  <b>공연제목 : </b>
+  <%= Concert.find(@match.concert_id).title %>
 </p>
 
 <p>
-  <b>Status:</b>
-  <%= @match.status %>
+  <b>일시 : </b>
+  <%= Schedule.find(@match.schedule_id).label_full %>
 </p>
 
-<p>
-  <b>Schedule:</b>
-  <%= @match.schedule %>
-</p>
+<b>참석자 : </b>
+<ul>
+	<%if @match.tickets %>
+	<% @match.tickets.each do |ticket|%>
+	<li style="padding-bottom: 5px;"><img src='<%= ticket.user.image_url%>' width='30px'> <%=ticket.user.name %> (<%=ticket.user.gender %>)</li>
+	<%end%>
+	<%end%>
+</ul>
 
 
 <%= link_to 'Edit', edit_match_path(@match) %> |

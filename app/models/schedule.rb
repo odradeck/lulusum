@@ -6,4 +6,8 @@ class Schedule < ActiveRecord::Base
   def label_start_time
     self.start_time.strftime("%Y-%m-%d %H:%M")
   end
+  
+  def label_full
+    "[" + String(self.concert.title) + "]  " + String(self.start_time.strftime("%Y-%m-%d %H:%M"))
+  end
 end

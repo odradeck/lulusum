@@ -4,9 +4,10 @@ class TicketsController < ApplicationController
   def index
     
     if (params[:matched] == 'true')
-      @tickets = Ticket.all
+      @tickets = current_user.tickets.where(:status => 'matched')
+      
     else
-       @tickets = Ticket.all
+       @tickets = current_user.tickets
     end
    
 
